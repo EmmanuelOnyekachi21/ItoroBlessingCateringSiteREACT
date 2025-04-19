@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className='text-white pt-5 pb-3' style={{ backgroundColor: '#111827' }}>
       <div className="px-3">
-        <div className="row mx-auto border border-danger">
+        <div className="row mx-auto">
 
           {/* Itoro Eats and Events */}
           <div className="col-12 col-md-6 mb-4 col-lg-3">
@@ -28,7 +28,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="col-12 col-md-6 col-lg-3 mb-4 border border-primary">
+          <div className="col-12 col-md-6 col-lg-3 mb-4">
             <h3 className='poppins-bold mb-3 text-start'>Quick Links</h3>
             <div className="mb-3 text-start">
               <ul className="navbar-nav fs-5 d-flex flex-column text-white">

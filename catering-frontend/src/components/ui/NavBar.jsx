@@ -74,7 +74,7 @@ const NavBar = () => {
             {/* Dropdown for small screens */}
             {isDropdownOpen && (
                 <div ref={dropdownRef} className={`${styles.dropdownMenu} d-lg-none`}>
-                    <ul className="navbar-nav fs-3 d-flex flex-column">
+                    <ul className="navbar-nav fs-3 d-flex mb-4 flex-column">
                         <NavBarLinks/>
                     </ul>
                 </div>
