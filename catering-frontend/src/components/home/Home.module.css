@@ -1,0 +1,88 @@
+.hero{
+    background-image: url('../../assets/images/home.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 95vh;
+    /* width: 100%; */
+    color: white;
+    position: relative;
+}
+.hero::after{
+    content: 'Hope';
+    height: 5vh;
+    background-color: #f8f9fa 
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 95vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+.content{
+    position: relative;
+    z-index: 2;
+    top: 30%;
+}
+
+.description{
+    /* width: 70%; */
+    font-size: 24px;
+}
+.headerDescribe{
+    width: 90%;
+    font-size: 48px;
+}
+
+.button1Hover{
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+}
+.button1Hover:hover{
+    background-color: hsl(0, 100%, 96%, 10%) !important;
+}
+
+.button2Hover{
+    background-color: rgb(249, 115, 22) !important;
+    transition: background-color 0.3s ease-in-out;
+}
+.button2Hover:hover{
+    background-color: rgb(249, 115, 22, 0.8) !important;
+}
+
+
+@media (max-width: 768px) {
+    .description{
+        width: 100%;
+        font-size: 1rem;
+    }
+    .headerDescribe{
+        width: 100%;
+        font-size: 32px;
+    }
+    .content{
+        padding-left: 0;
+        width: 98%;
+        margin: 0 auto;
+    }
+    .hero{
+        height: 85vh;
+    }
+    .overlay{
+        height: 85vh;
+    }
+
+}
+
+@media (min-width: 1200px) {
+    .description{
+        width: 65%;
+        font-size: 24px;
+    }
+    .headerDescribe{
+        width: 50%;
+    }
+}

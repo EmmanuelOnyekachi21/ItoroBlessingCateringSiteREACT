@@ -35,18 +35,18 @@ const NavBar = () => {
     }, [])
 
     return (
-        <nav className='bg-white shadow-sm position-fixed w-100 top-0' style={{ zIndex: '50', height: '5rem' }}>
+        <nav className='bg-white shadow-sm position-fixed w-100 top-0' style={{ zIndex: '50', height: '4rem' }}>
             <div className="d-flex align-items-center px-4" style={{ justifyContent: 'space-between', height: '100%' }}>
                 {/* Left side: Logo */}
                 <div className="d-flex align-items-center order-0">
                     <ChefHat className='text-warning' style={{ height: '3rem', width: '3rem' }} />
-                    <span className='poppins-semibold fs-1 ms-2'>Itoro Eats</span>
+                    <span className='poppins-semibold fs-3 ms-2'>Itoro Eats</span>
                 </div>
 
                 {/* Middle: Nav Links (Desktop only) */}
                 <div className='d-none d-md-block'>
-                    <ul className="navbar-nav fs-3 d-none d-lg-flex flex-md-row" style={{ gap: '1.5rem' }}>
-                        <NavBarLinks color='black' />
+                    <ul className="navbar-nav d-none d-lg-flex flex-md-row" style={{ gap: '1rem' }}>
+                        <NavBarLinks />
                     </ul>
                 </div>
 

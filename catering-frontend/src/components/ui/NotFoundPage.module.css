@@ -1,0 +1,8 @@
+.buttonEffect{
+    background-color: rgb(var(--orange)) !important;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.buttonEffect:hover{
+    background-color: rgba(var(--orange), 0.8) !important;
+}

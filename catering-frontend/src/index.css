@@ -1,4 +1,8 @@
 /* Global font settings */
+:root{
+  --orange: 249, 115, 22;
+  --grey: #9ca3af;
+}
 body {
   font-family: "Lato", sans-serif;
 }

@@ -1,0 +1,21 @@
+.cardImgWrapper{
+    height: 16rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.cardImgZoom{
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.cardImgZoom:hover{
+    transform: scale(1.1);
+}
+.orderHover{
+    background-color: transparent !important;
+    transition: background-color 0.3s ease-in-out;
+}
+.orderHover:hover{
+    background-color: #f2f2f2 !important;
+}

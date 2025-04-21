@@ -1,0 +1,9 @@
+.FDHeader{
+    width: 42%;
+}
+
+@media (max-width: 768px) {
+    .FDHeader{
+        width: 75%;
+    }
+}

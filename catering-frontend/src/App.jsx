@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './components/Layout/MainLayout';
+import NotFoundPage from './components/ui/NotFoundPage';
+import Home from './components/home/Home'
 
 
 const App = () => {
@@ -11,8 +10,9 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<MainLayout />}>
-            
+            <Route index element={<Home />} />
           </Route>
+          <Route path='*' element={<NotFoundPage />}/>
         </Routes>
       </BrowserRouter>
   )
