@@ -1,5 +1,5 @@
 /* Global font settings */
-:root{
+:root {
   --orange: 249, 115, 22;
   --grey: #9ca3af;
 }
@@ -49,3 +49,33 @@ h6 {
   font-weight: 700;
   font-style: normal;
 }
+
+/* Carousel button positioning */
+/* Positioning */
+.slick-prev,
+.slick-next {
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Adjust side placement */
+.slick-prev {
+  left: 10px !important;
+}
+.slick-next {
+  right: 10px !important;
+}
+/* Custom styling */
+.slick-prev::before,
+.slick-next::before {
+  color: #212529 !important; /* Dark arrow color */
+  font-size: 30px;
+  opacity: 1 !important; /* Make it fully visible */
+}
+
+  /* Optional: On hover highlight */
+  .slick-prev:hover::before,
+  .slick-next:hover::before {
+    color: #000 !important;
+  }

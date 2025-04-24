@@ -6,7 +6,7 @@ import NavBarLinks from './NavBarLinks'
 import styles from './NavBar.module.css'
 
 const NavBar = () => {
-    // Define state for sidebar toggle
+    // Define state for dropdown toggle
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef();
     const buttonRef = useRef();
@@ -35,7 +35,7 @@ const NavBar = () => {
     }, [])
 
     return (
-        <nav className='bg-white shadow-sm position-fixed w-100 top-0' style={{ zIndex: '50', height: '4rem' }}>
+        <nav className={`shadow-sm position-fixed w-100 top-0 ${styles.navBarBlur}`} style={{ zIndex: '50', height: '4rem' }}>
             <div className="d-flex align-items-center px-4" style={{ justifyContent: 'space-between', height: '100%' }}>
                 {/* Left side: Logo */}
                 <div className="d-flex align-items-center order-0">
@@ -53,7 +53,7 @@ const NavBar = () => {
                 {/* Right side: Cart */}
                 <div className='d-flex align-items-center gap-5'>
                     <div className="position-relative me-5">
-                        <ShoppingCart />
+                        <ShoppingCart className={`${styles.cartHover}`}/>
                         <span className={`text-bg-dark badge position-absolute ${styles.top} rounded-circle ${styles.reduceSize}`} style={{ width: '1.5rem', height: '1.5rem' }}>2</span>
                     </div>
                     {/* Hamburger icon */}

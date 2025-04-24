@@ -1,0 +1,29 @@
+.testPara{
+    width: 70%;
+}
+.imageDiv{
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+}
+.image{
+    object-fit: cover;
+    border-radius: inherit;
+}
+.textHeight{
+    min-height: 80px;
+}
+
+@media (min-width: 800px) and (max-width: 1200px) {
+    .textHeight{
+        min-height: 70px;
+    }
+}
+@media (max-width: 768px) {
+    .testPara{
+        width: 100%;
+    }
+    .textHeight{
+        min-height: 60px;
+    }
+}

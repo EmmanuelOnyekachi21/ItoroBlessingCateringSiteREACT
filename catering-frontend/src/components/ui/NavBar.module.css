@@ -1,3 +1,8 @@
+.navBarBlur{
+  background: transparent;
+  backdrop-filter: blur(5px);
+}
+
 .reduceSize {
   font-size: 10px;
 }
@@ -64,4 +69,12 @@ span.open:nth-child(3) {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 48;
+}
+
+.cartHover{
+  transition: color 0.3s ease-in-out;
+  cursor: pointer;
+}
+.cartHover:hover{
+  color: rgb(var(--orange)) !important;
 }

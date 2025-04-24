@@ -2,10 +2,22 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './Home.module.css'
 import FeaturedDishes from './FeaturedDishes'
 import CateringSection from './CateringSection'
-import RollingCircle from '../RollingCircle'
 import { useAnimation, useInView } from 'framer-motion'
+import Testimonial from './Testimonial'
+import CTASection from './CTASection'
+import api from '../../api'
+
+
 const Home = () => {
-  
+  const [featuredProducts, setFeaturedProducts] = useState([])
+  useEffect(() => {
+    api.get('api/dish/featured-dishes')
+    .then(res => {
+      console.log(res.data)
+      setFeaturedProducts(res.data)
+    })
+    .catch(err => console.log(err.message))
+  }, [featuredProducts])
   return (
     <>
       <section className={`${styles.hero}`}>
@@ -29,12 +41,20 @@ const Home = () => {
 
       {/* Featured Dishes Section */}
       <section className='pb-5 mt-5 bg-light'>
-        <FeaturedDishes />
+        <FeaturedDishes featuredDishes={featuredProducts} />
       </section>
 
       {/* Catering services Section */}
       <section className="bg-white mt-5">
         <CateringSection />
+      </section>
+
+      <section className="bg-light my-5 pt-5">
+        <Testimonial />
+      </section>
+
+      <section className="mt-5" style={{ backgroundColor: 'rgb(var(--orange))' }}>
+        <CTASection />
       </section>
 
     
