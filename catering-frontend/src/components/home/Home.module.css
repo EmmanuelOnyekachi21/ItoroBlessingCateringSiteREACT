@@ -10,7 +10,7 @@
 .hero::after{
     content: 'Hope';
     height: 5vh;
-    background-color: #f8f9fa 
+    background-color: #f8f9fa;
 }
 
 .overlay{

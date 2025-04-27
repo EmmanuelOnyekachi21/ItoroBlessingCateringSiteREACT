@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const ButtonEffect = ({title}) => {
     const [isHovered, setIsHovered] = useState(false);
+    const navigate = useNavigate();
 
     return (
         <motion.button
@@ -18,6 +20,7 @@ const ButtonEffect = ({title}) => {
                 transition: 'background-color 0.3s ease',
                 overflow: 'hidden', // ensures arrow stays inside even if animated
             }}
+            onClick={() => navigate('/menu')}
             whileHover={{ scaleX: 1.05 }}
             className='d-inline-flex btn align-items-center gap-2 mb-3'
             onHoverStart={() => setIsHovered(!isHovered)}

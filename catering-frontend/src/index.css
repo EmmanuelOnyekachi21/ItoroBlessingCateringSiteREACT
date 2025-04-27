@@ -74,8 +74,22 @@ h6 {
   opacity: 1 !important; /* Make it fully visible */
 }
 
-  /* Optional: On hover highlight */
-  .slick-prev:hover::before,
-  .slick-next:hover::before {
-    color: #000 !important;
-  }
+/* Optional: On hover highlight */
+.slick-prev:hover::before,
+.slick-next:hover::before {
+  color: #000 !important;
+}
+
+.fade-section{
+  opacity: 0;
+  transform: translateY(10px); /* Slight lift */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  /* Makes cards, buttons which are initially hidden to be unclickable */
+  pointer-events: none;
+}
+
+.fade-in{
+  opacity: 1;
+  transform: translateY(0px);
+  pointer-events: auto;
+}

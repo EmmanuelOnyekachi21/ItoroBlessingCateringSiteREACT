@@ -14,10 +14,12 @@
 }
 .orderHover{
     background-color: transparent !important;
-    transition: background-color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    color: black;
 }
 .orderHover:hover{
-    background-color: #f2f2f2 !important;
+    background-color: rgb(var(--orange)) !important;
+    color: #f2f2f2 !important;
 }
 .cardHover{
     transition: box-shadow 0.3s ease-in-out;
@@ -25,4 +27,9 @@
 
 .cardHover:hover{
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.spanHover:hover{
+    text-decoration: underline;
 }

@@ -1,0 +1,29 @@
+.hero{
+    /* background-image: url('../../assets/images/Menu.jpeg');
+    background-position: center;
+    background-size: cover; */
+    background-color: rgba(190, 28, 28, 0.1);
+    height: 40vh;
+    position: relative;
+}
+.heroText{
+    width: 50%;
+    margin: 0 auto;
+}
+.buttonSmall{
+    width: 90%;
+    margin: 0 auto;
+}
+.buttonHover{
+    background-color: rgb(var(--orange));
+    transition: color 0.3s ease-in-out;
+}
+.buttonHover:hover{
+    background-color: var(--grey) !important;
+}
+
+@media (max-width: 768px) {
+    .heroText{
+        width: 90%;
+    }
+}

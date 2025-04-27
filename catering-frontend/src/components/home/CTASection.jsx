@@ -1,8 +1,10 @@
 import React from 'react'
 import styles from './CTASection.module.css'
+import { useNavigate } from 'react-router-dom'
 
 
 const CTASection = () => {
+    const navigate = useNavigate();
     return (
         <div className='pt-5 text-white'>
             <h1 className="poppins-bold text-center mb-3">
@@ -15,7 +17,7 @@ const CTASection = () => {
             <div className={`mt-5 ${styles.buttonDisplay}`}>
                 <div className={`${styles.containerWidth}`}>
                     <div className={`${styles.buttonFlex}`}>
-                        <button className={`btn btn-dark px-4 py-md-3 py-3`}>Order Food Now</button>
+                        <button onClick={() => navigate('/menu')} className={`btn btn-dark px-4 py-md-3 py-3`}>Order Food Now</button>
                         <button className={`btn btn-light px-5 py-md-3 py-3`}>Contact Us</button>
                     </div>
                 </div>

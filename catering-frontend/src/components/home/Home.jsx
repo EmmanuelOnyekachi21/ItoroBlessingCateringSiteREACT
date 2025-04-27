@@ -6,9 +6,17 @@ import { useAnimation, useInView } from 'framer-motion'
 import Testimonial from './Testimonial'
 import CTASection from './CTASection'
 import api from '../../api'
+import { useNavigate } from 'react-router-dom'
 
 
 const Home = () => {
+  const navigate = useNavigate()
+
+  const goToMenu = () => {
+    navigate('/menu')
+  }
+
+
   const [featuredProducts, setFeaturedProducts] = useState([])
   useEffect(() => {
     api.get('api/dish/featured-dishes')
@@ -33,7 +41,7 @@ const Home = () => {
 
           </div>
           <div className={`d-flex flex-md-row flex-column gap-3 ${styles.buttonDiv}`}>
-            <button className={`btn text-white py-2 fs-5 px-4 ${styles.button2Hover}`}>Order Food</button>
+            <button className={`btn text-white py-2 fs-5 px-4 ${styles.button2Hover}`} onClick={goToMenu}>Order Food</button>
             <button className={`btn text-white py-2 fs-5 px-4 border-white ${styles.button1Hover}`}>Book Catering</button>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './components/Layout/MainLayout';
 import NotFoundPage from './components/ui/NotFoundPage';
 import Home from './components/home/Home'
+import Menu from './components/menu/Menu';
 
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<MainLayout />}>
             <Route index element={<Home />} />
+            <Route path='/menu' element={<Menu />} />
           </Route>
           <Route path='*' element={<NotFoundPage />}/>
         </Routes>
