@@ -4,11 +4,13 @@ import MainLayout from './components/Layout/MainLayout';
 import NotFoundPage from './components/ui/NotFoundPage';
 import Home from './components/home/Home'
 import Menu from './components/menu/Menu';
+import ScrollToTop from './components/ui/ScrollToTop';
 
 
 const App = () => {
   return (
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path='/' element={<MainLayout />}>
             <Route index element={<Home />} />
