@@ -44,7 +44,7 @@ const HeroSection = () => {
   return (
     <>
       {/* Hero Section Title */}
-      <div className={`container-fluid text-center ${styles.hero}`}>
+      <div className={`container-fluid text-center ${styles.hero}`} style={{ height: '40vh' }}>
         <div className={`${styles.content} ps-md-4`} style={{ paddingTop: '6rem' }} />
         <h1 className='poppins-bold'>Our Menu</h1>
         <p className={`text-muted text-center ${styles.heroText}`}>

@@ -16,6 +16,10 @@ const Home = () => {
     navigate('/menu')
   }
 
+  const goToCatering = () => {
+    navigate('/catering')
+  }
+
 
   const [featuredProducts, setFeaturedProducts] = useState([])
   useEffect(() => {
@@ -42,7 +46,7 @@ const Home = () => {
           </div>
           <div className={`d-flex flex-md-row flex-column gap-3 ${styles.buttonDiv}`}>
             <button className={`btn text-white py-2 fs-5 px-4 ${styles.button2Hover}`} onClick={goToMenu}>Order Food</button>
-            <button className={`btn text-white py-2 fs-5 px-4 border-white ${styles.button1Hover}`}>Book Catering</button>
+            <button className={`btn text-white py-2 fs-5 px-4 border-white ${styles.button1Hover}`} onClick={goToCatering}>Book Catering</button>
           </div>
         </div>
       </section>
@@ -53,7 +57,7 @@ const Home = () => {
       </section>
 
       {/* Catering services Section */}
-      <section className="bg-white mt-5">
+      <section className="bg-white mt-2">
         <CateringSection />
       </section>
 

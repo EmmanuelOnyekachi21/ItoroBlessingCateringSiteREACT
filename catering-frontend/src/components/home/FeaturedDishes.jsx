@@ -29,7 +29,7 @@ const FeaturedDishes = ({featuredDishes}) => {
             </div>
 
             <div className="text-center mt-4">
-                <ButtonEffect title={title} />
+                <ButtonEffect title={title} location={'/menu'} />
             </div>
         </>
     )

@@ -5,6 +5,7 @@ import NotFoundPage from './components/ui/NotFoundPage';
 import Home from './components/home/Home'
 import Menu from './components/menu/Menu';
 import ScrollToTop from './components/ui/ScrollToTop';
+import CateringPage from './components/catering/CateringPage';
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
           <Route path='/' element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path='/menu' element={<Menu />} />
+            <Route path='/catering' element={<CateringPage />} />
           </Route>
           <Route path='*' element={<NotFoundPage />}/>
         </Routes>

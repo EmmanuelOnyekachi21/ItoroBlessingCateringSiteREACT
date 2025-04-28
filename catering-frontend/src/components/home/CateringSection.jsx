@@ -71,7 +71,7 @@ const CateringSection = () => {
                                 <Services key={index} feature={feature} />
                             )
                         }
-                        <ButtonEffect title={title} />
+                        <ButtonEffect title={title} location={'/catering'} />
                     </div>
 
                 </div>
