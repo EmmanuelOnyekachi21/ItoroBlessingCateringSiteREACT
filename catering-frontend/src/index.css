@@ -80,7 +80,7 @@ h6 {
   color: #000 !important;
 }
 
-.fade-section{
+.fade-section {
   opacity: 0;
   transform: translateY(10px); /* Slight lift */
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -88,8 +88,63 @@ h6 {
   pointer-events: none;
 }
 
-.fade-in{
+.fade-in {
   opacity: 1;
   transform: translateY(0px);
   pointer-events: auto;
+}
+.link-effect {
+  color: #000;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+}
+.link-effect:hover {
+  color: rgb(var(--orange));
+  text-decoration: underline;
+}
+
+.nav-pills {
+  --bs-nav-pills-border-radius: var(
+    --bs-border-radius
+  ); /* keep this if you want rounded pills */
+  --bs-nav-pills-link-active-color: #000; /* text color for active pill */
+  --bs-nav-pills-link-active-bg: #fff;
+}
+
+.nav {
+  --bs-nav-link-padding-x: 1rem;
+  --bs-nav-link-padding-y: 0.5rem;
+  --bs-nav-link-color: #6c757d;
+  --bs-nav-link-hover-color: rgb(var(--orange));
+}
+
+@media (max-width: 768px) {
+  .nav-tab {
+    display: block;
+    width: 100%;
+  }
+  .nav-tablist {
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav-tablist li:nth-child(2) {
+    flex: 1;
+  }
+  .nav-tablist li:nth-child(3) {
+    flex: 1;
+  }
+  .nav-tablist li:nth-child(1) {
+    flex: 1;
+  }
+  .nav-tablist li button {
+    width: 100%;
+  }
+  .nav {
+    --bs-nav-link-padding-x: 0.5rem;
+    --bs-nav-link-padding-y: 0.5rem;
+  }
+  .reviewtab{
+    width: 100% !important;
+    padding: 1rem;
+  }
 }

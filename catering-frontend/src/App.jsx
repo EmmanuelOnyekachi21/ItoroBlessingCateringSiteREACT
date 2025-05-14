@@ -6,6 +6,7 @@ import Home from './components/home/Home'
 import Menu from './components/menu/Menu';
 import ScrollToTop from './components/ui/ScrollToTop';
 import CateringPage from './components/catering/CateringPage';
+import DishInfo from './components/dishes/DishInfo';
 
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path='/menu' element={<Menu />} />
             <Route path='/catering' element={<CateringPage />} />
+            <Route path='/dishes/:category_slug/:product_slug' element={<DishInfo />} />
           </Route>
           <Route path='*' element={<NotFoundPage />}/>
         </Routes>

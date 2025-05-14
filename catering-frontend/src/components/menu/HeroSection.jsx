@@ -80,7 +80,7 @@ const HeroSection = () => {
                 <button className='btn btn-light border justify-content-center align-items-center'>
                   <Heart size={16} />
                 </button>
-                <button className='btn btn-light border justify-content-center align-items-center'>
+                <button onClick={() => navigate(`/dishes/${dish.category.slug}/${dish.slug}`)} className='btn btn-light border justify-content-center align-items-center'>
                   <ArrowRight size={16} />
                 </button>
               </div>

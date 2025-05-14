@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import styles from './Card.module.css'
 import { BaseURL } from '../../api'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import useCategories from '../../hooks/useCategories'
 
 const MAX_LENGTH = 80
 
@@ -23,22 +24,30 @@ const Card = ({ product, children }) => {
             ? product.description.slice(0, MAX_LENGTH)
             : product.description
         )
+    
+    // Get category slug
+    const category_slug = product.category.slug;
+    const product_slug = product.slug
 
     return (
         <div className='p-3'>
             <div className={`card ${styles.cardHover}`}>
                 <div className={`${styles.cardImgWrapper}`}>
-                    <img
-                        className={`card-img-top ${styles.cardImgZoom} w-100 h-100`}
-                        src={`${BaseURL}${product.image}`}
-                        alt="Image of Dish"
-                    />
+                    <Link to={`/dishes/${category_slug}/${product_slug}`}>
+                        <img
+                            className={`card-img-top ${styles.cardImgZoom} w-100 h-100`}
+                            src={`${BaseURL}${product.image}`}
+                            alt="Image of Dish"
+                        />
+                    </Link>
                 </div>
                 <div className="card-body">
                     <div className='d-flex mb-3 justify-content-between'>
-                        <h5 className="card-title" style={{ fontSize: '16px' }}>
-                            {product.name}
-                        </h5>
+                        <a href={`/dishes/${category_slug}/${product_slug}`} className={`link-effect`}>
+                            <h5 className="card-title" style={{ fontSize: '16px' }}>
+                                {product.name}
+                            </h5>
+                        </a>
                         <span className="lato-bold" style={{ color: 'rgb(var(--orange))', fontSize: '16px' }}>
                             {`₦${product.price}`}
                         </span>
@@ -60,7 +69,7 @@ const Card = ({ product, children }) => {
                     {children ? children : (
                         <button
                             className={`btn border w-100 ${styles.orderHover}`}
-                            onClick={() => navigate('/menu')}
+                            onClick={() => navigate(`/dishes/${category_slug}/${product_slug}`)}
                         >
                             Order Now
                         </button>
