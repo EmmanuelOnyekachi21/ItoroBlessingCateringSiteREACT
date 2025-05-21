@@ -7,6 +7,7 @@ import OrderSection from './OrderSection';
 import { Heart, ShoppingCartIcon } from 'lucide-react';
 import styles from '../menu/Menu.module.css';
 import ReviewsTab from './ReviewsTab';
+import SuggestedPairings from './SuggestedPairings';
 
 
 
@@ -16,9 +17,10 @@ const DishInfo = () => {
     const [dish, setDish] = useState({});
     const { category_slug } = useParams();
     const { product_slug } = useParams();
-    const [avgreviews, setAvgReviews] = useState({})
-    const [ReviewNumbers, setReviewNumbers] = useState(0)
-    const [reviews, setReviews] = useState([])
+    const [avgreviews, setAvgReviews] = useState({});
+    const [ReviewNumbers, setReviewNumbers] = useState(0);
+    const [reviews, setReviews] = useState([]);
+    const [pairings, setPairings] = useState([]);
 
     useEffect(() => {
         api.get(`api/dish/${category_slug}/${product_slug}`)
@@ -29,9 +31,10 @@ const DishInfo = () => {
                 setAvgReviews(res.data.average_rating)
                 setReviewNumbers(res.data.total_reviews)
                 setReviews(res.data.reviews)
+                setPairings(res.data.suggested_pairings)
             })
             .catch((err) => console.log(err.message))
-    }, [])
+    }, [category_slug, product_slug])
     // console.log(extras)
     const slug = dish.slug;
     console.log(slug)
@@ -145,7 +148,9 @@ const DishInfo = () => {
                             <ReviewsTab avg={avgreviews} total={ReviewNumbers} slug={slug} reviews={reviews} number={ReviewNumbers} />
                         </div>
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Recipe</div>
-                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">Suggested Pairing</div>
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                            <SuggestedPairings pairings={pairings} cat_slug={category_slug} dish_slug={product_slug} />
+                        </div>
                     </div>
             </section>
         </>
