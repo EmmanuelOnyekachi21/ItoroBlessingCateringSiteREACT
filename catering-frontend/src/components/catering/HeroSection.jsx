@@ -3,7 +3,7 @@ import styles from '../menu/Menu.module.css';
 import buttonStyles from '../home/Home.module.css'
 
 
-const HeroSection = () => {
+const HeroSection = ({ onRequestCateringClick }) => {
     return (
         <div className={`container-fluid text-center ${styles.hero}`} style={{ height: '60vh' }}>
             <div className={`${styles.content} ps-md-4`} style={{ paddingTop: '6rem' }} />
@@ -12,9 +12,9 @@ const HeroSection = () => {
                 Let us make your special event memorable with our authentic African cuisine catering services
             </p>
             <div className='mt-5'>
-                <a href="#catering-form" className={`${buttonStyles.button2Hover} btn text-white btn-lg`}>
+                <button onClick={onRequestCateringClick} className={`${buttonStyles.button2Hover} btn text-white btn-lg`}>
                     Request Catering
-                </a>
+                </button>
             </div>
         </div>
     )

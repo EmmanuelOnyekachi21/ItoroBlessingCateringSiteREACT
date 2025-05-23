@@ -25,7 +25,7 @@ const Home = () => {
   useEffect(() => {
     api.get('api/dish/featured-dishes')
     .then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       setFeaturedProducts(res.data)
     })
     .catch(err => console.log(err.message))
