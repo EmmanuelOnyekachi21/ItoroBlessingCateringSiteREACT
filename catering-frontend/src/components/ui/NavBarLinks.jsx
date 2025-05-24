@@ -21,6 +21,13 @@ const NavBarLinks = () => {
       <li className="nav-item poppins-regular">
         <a className="nav-link footer-hover" href="/contact">Contact</a>
       </li>
+      <li className="nav-item d-block d-lg-none poppins-regular">
+        <a className="nav-link footer-hover" href="/contact">Login</a>
+      </li>
+      <li className="nav-item d-block d-lg-none poppins-regular">
+        <a className="nav-link footer-hover btn" href="/contact">Create Account</a>
+      </li>
+
 
 
       {/* Add Bootstrap-style hover effect */}

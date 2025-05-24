@@ -47,13 +47,27 @@ const NavBar = () => {
                 <div className='d-none d-md-block'>
                     <ul className="navbar-nav d-none d-lg-flex flex-md-row" style={{ gap: '1rem' }}>
                         <NavBarLinks />
+                        <ul className='d-lg-flex d-none ms-5 gap-3' style={{ listStyle: 'none' }}>
+                            <li className="nav-item poppins-regular">
+                                <a className="nav-link footer-hover" href="/login">Login</a>
+                            </li>
+                            <li className="nav-item poppins-regular">
+                                <a className="nav-link  btn px-2" style={{ backgroundColor: 'rgb(var(--orange))' }} href="/register">Create Account</a>
+                            </li>
+                        </ul>
                     </ul>
                 </div>
 
+                {/* <div className='d-flex align-items-center d-md-block d-none'>
+                    <a className='poppins-regular nav-item' style={{ color: 'black', textDecoration: 'none' }}> Login </a>
+                    <button className='btn' style={{ backgroundColor: 'rgb(var(--orange))' }}> Create Account </button>
+                </div> */}
+
                 {/* Right side: Cart */}
                 <div className='d-flex align-items-center gap-5'>
+
                     <div className="position-relative me-5">
-                        <ShoppingCart className={`${styles.cartHover}`}/>
+                        <ShoppingCart className={`${styles.cartHover}`} />
                         <span className={`text-bg-dark badge position-absolute ${styles.top} rounded-circle ${styles.reduceSize}`} style={{ width: '1.5rem', height: '1.5rem' }}>2</span>
                     </div>
                     {/* Hamburger icon */}
@@ -75,7 +89,7 @@ const NavBar = () => {
             {isDropdownOpen && (
                 <div ref={dropdownRef} className={`${styles.dropdownMenu} d-lg-none`}>
                     <ul className="navbar-nav fs-3 d-flex mb-4 flex-column">
-                        <NavBarLinks/>
+                        <NavBarLinks />
                     </ul>
                 </div>
             )}

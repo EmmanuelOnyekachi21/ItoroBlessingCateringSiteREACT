@@ -7,6 +7,9 @@ import Menu from './components/menu/Menu';
 import ScrollToTop from './components/ui/ScrollToTop';
 import CateringPage from './components/catering/CateringPage';
 import DishInfo from './components/dishes/DishInfo';
+import Register from './components/Auth/Register';
+import Login from './components/Auth/Login';
+import Verify from './components/Auth/Verify'
 
 
 const App = () => {
@@ -19,6 +22,9 @@ const App = () => {
             <Route path='/menu' element={<Menu />} />
             <Route path='/catering' element={<CateringPage />} />
             <Route path='/dishes/:category_slug/:product_slug' element={<DishInfo />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/verify' element={<Verify />} />
           </Route>
           <Route path='*' element={<NotFoundPage />}/>
         </Routes>
