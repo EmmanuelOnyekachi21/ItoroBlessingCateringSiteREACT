@@ -34,9 +34,6 @@ const Register = () => {
                 toast.success(res.data.message, { autoClose: 10000 })
                 setLoading(false);
                 resetForm();
-                setTimeout(() => {
-                    navigate('/verify')
-                }, 5000);
             })
             .catch((err) => {
                 console.log(err?.response?.data)

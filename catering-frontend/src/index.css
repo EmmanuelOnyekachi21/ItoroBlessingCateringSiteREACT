@@ -136,6 +136,38 @@ h6 {
   }
 }
 
+.spinner-icon {
+  width: 48px;
+  height: 48px;
+  animation: spin 1s linear infinite;
+  color: #0d6efd; /* bootstrap primary color */
+}
+
+.success-icon {
+  width: 48px;
+  height: 48px;
+  color: #198754; /* bootstrap success */
+}
+
+.error-icon {
+  width: 48px;
+  height: 48px;
+  color: #dc3545; /* bootstrap danger */
+}
+
+.warning-icon {
+  width: 48px;
+  height: 48px;
+  color: #ffc107; /* bootstrap warning */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 @media (max-width: 768px) {
   .nav-tab {
     display: block;
