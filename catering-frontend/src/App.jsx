@@ -10,6 +10,7 @@ import DishInfo from './components/dishes/DishInfo';
 import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
 import Verify from './components/Auth/Verify'
+import RegenerateToken from './components/Auth/RegenerateToken';
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/verify' element={<Verify />} />
+            <Route path='/regenerate-token' element={<RegenerateToken />} />
           </Route>
           <Route path='*' element={<NotFoundPage />}/>
         </Routes>

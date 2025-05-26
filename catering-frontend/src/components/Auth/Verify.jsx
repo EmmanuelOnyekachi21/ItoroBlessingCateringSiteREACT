@@ -3,6 +3,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import api from '../../api';
 import { toast } from 'react-toastify';
 import { AlertCircle, CheckCircle, Loader2 } from 'lucide-react';
+import HandleAPIErrors from '../../utils/HandleAPIErrors';
 
 const Verify = () => {
   const [searchParams] = useSearchParams();
@@ -18,12 +19,12 @@ const Verify = () => {
   useEffect(() => {
     let redirectTimer;
 
-    if (verificationState === 'success') {
-      setIsRedirecting(true);
-      redirectTimer = setTimeout(() => {
-        navigate('/login');
-      }, 5000);
-    }
+    // if (verificationState === 'success') {
+    //   setIsRedirecting(true);
+    //   redirectTimer = setTimeout(() => {
+    //     navigate('/login');
+    //   }, 5000);
+    // }
 
     return () => {
       if (redirectTimer) clearTimeout(redirectTimer);
@@ -35,12 +36,12 @@ const Verify = () => {
     api.get(`/api/auth/verify/?token=${encodeURIComponent(token)}`)
       .then(res => {
         setVerificationState('success');
-        toast.success(res.data.Message);
+        toast.success(res.data.message);
       })
       .catch(err => {
         setVerificationState('error');
         // setErrorMessage("Invalid or Expired Token")
-        toast.error('Unable to verify token.\nRegenerate token and try to verify again.');
+        HandleAPIErrors(err)
       })
   }
 
@@ -55,6 +56,7 @@ const Verify = () => {
       return;
     }
 
+    // Prevent the function to be called twice.
     if (!hasRunRef.current){
       hasRunRef.current = true;
       console.log("Calling verifyEmail...");
@@ -109,7 +111,7 @@ const Verify = () => {
         {verificationState === 'error' ? (
           <>
             <Link to='/regenerate-token' className='btn btn-primary'>Regenerate token</Link>
-            <Link to="/" className="btn btn-link">Back to Home</Link>
+            <Link to="/" className="btn btn-secondary">Back to Home</Link>
           </>
         ) : (
           <>
