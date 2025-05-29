@@ -16,6 +16,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@popperjs/core": "^2.11.8",
     "axios": "^1.8.4",
+    "axios-auth-refresh": "^3.3.6",
     "bootstrap": "^5.3.5",
     "font-awesome": "^4.7.0",
     "framer-motion": "^12.7.4",
