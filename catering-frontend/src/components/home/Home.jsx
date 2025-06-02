@@ -7,9 +7,19 @@ import Testimonial from './Testimonial'
 import CTASection from './CTASection'
 import api from '../../api'
 import { useNavigate } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid'
 
 
 const Home = () => {
+  // Sets and store cartcode on mounting.
+  const cart_code = uuidv4()
+  useEffect(() => {
+    if (!localStorage.getItem('cart_code')){
+      localStorage.setItem('cart_code', cart_code)
+    }
+  }, [])
+  
+  
   const navigate = useNavigate()
 
   const goToMenu = () => {
@@ -30,6 +40,7 @@ const Home = () => {
     })
     .catch(err => console.log(err.message))
   }, [featuredProducts])
+
   return (
     <>
       <section className={`${styles.hero}`}>

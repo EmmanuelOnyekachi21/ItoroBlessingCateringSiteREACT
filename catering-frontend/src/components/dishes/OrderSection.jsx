@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 const OrderSection = () => {
-    const [orderType, setOrderType] = useState('delivery') // defaults to pickups
+    const [orderType, setOrderType] = useState('delivery') // defaults to delivery
     return (
         <>
             <div className="form-check mb-2">

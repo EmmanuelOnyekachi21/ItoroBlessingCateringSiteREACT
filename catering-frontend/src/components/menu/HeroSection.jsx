@@ -6,6 +6,8 @@ import ButtonNavigation from './ButtonNavigation';
 import CardContainer from '../ui/CardContainer';
 import { ArrowRight, Heart, ShoppingCartIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import useGetorCreateCode from '../../hooks/useGetorCreateCode';
+import AddToCart from '../../utils/addToCart';
 
 /**
  * Hero Section for the Menu page
@@ -41,6 +43,31 @@ const HeroSection = () => {
     }, 100);
   };
 
+  // On render, disables dishes already in the cart
+  const [dishInCart, setDishInCart] = useState({});
+  const cart_code = useGetorCreateCode();
+  const [results, setResults] = useState({})
+
+  useEffect(() => {
+    dishes.map((dish) => {
+      const dish_id = dish.id
+      const data = { cart_code, dish_id }
+      api.post('/api/cart/product_in_cart/', data)
+        .then(res => {
+          // const results = { id: dish.id, inCart: res.data.dish_in_cart }
+          setResults(prev => ({ ...prev, [dish.id]: res.data.dish_in_cart }))
+        })
+        .catch(err => console.log(err.message))
+    })
+  }, [dishes])
+
+  // const add_item = AddToCart(cart_code, dish.id, setDishInCart);
+  const add_item = (dish) => {
+    AddToCart(cart_code, dish);
+    setDishInCart((prev) => ({ ...prev, [dish.id]: true }))
+  }
+
+
   return (
     <>
       {/* Hero Section Title */}
@@ -67,25 +94,33 @@ const HeroSection = () => {
       {/* Dish Cards */}
       <div className='container-fluid px-4 pb-3'>
         <div className={`row gx-2 fade-section ${fade ? 'fade-in' : ''} mx-auto`}>
-          {filteredItems.map((dish) => (
-            <CardContainer key={dish.id} product={dish}>
-              <div className='d-flex gap-2'>
-                <button
-                  className={`btn d-flex text-white justify-content-around align-items-center ${styles.buttonHover}`}
-                  style={{ width: '70%', backgroundColor: 'rgb(var(--orange))' }}
-                >
-                  <span>+</span>
-                  <span> Add to cart</span>
-                </button>
-                <button className='btn btn-light border justify-content-center align-items-center'>
-                  <Heart size={16} />
-                </button>
-                <button onClick={() => navigate(`/dishes/${dish.category.slug}/${dish.slug}`)} className='btn btn-light border justify-content-center align-items-center'>
-                  <ArrowRight size={16} />
-                </button>
-              </div>
-            </CardContainer>
-          ))}
+          {filteredItems.map((dish) => {
+
+            const isInCart = (dishInCart[dish.id] || (localStorage.getItem(`cart_item_id_${dish.name}`) ? true : false)) ?? false
+
+          return (
+
+          <CardContainer key={dish.id} product={dish}>
+            <div className='d-flex gap-2'>
+              <button
+                onClick={() => add_item(dish)}
+                disabled={isInCart}
+                className={`btn d-flex text-white justify-content-around align-items-center ${styles.buttonHover}`}
+                style={{ width: '70%', backgroundColor: 'rgb(var(--orange))' }}
+              >
+                { isInCart ? '' : <span>+</span> }
+                <span> {isInCart ? 'Added to Cart' : 'Add to cart'}</span>
+              </button>
+              <button className='btn btn-light border justify-content-center align-items-center'>
+                <Heart size={16} />
+              </button>
+              <button onClick={() => navigate(`/dishes/${dish.category.slug}/${dish.slug}`)} className='btn btn-light border justify-content-center align-items-center'>
+                <ArrowRight size={16} />
+              </button>
+            </div>
+          </CardContainer>
+          )
+          })}
         </div>
       </div>
 

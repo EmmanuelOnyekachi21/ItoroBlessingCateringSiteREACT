@@ -39,7 +39,6 @@ const DishInfo = () => {
     const slug = dish.slug;
     console.log(slug)
     // console.log(extras.extras)
-
     return (
         <>
             <section className={`pt-5 container-fluid bg-light`}>
@@ -143,15 +142,15 @@ const DishInfo = () => {
                         </li>
                     </ul>
                 </div>
-                    <div class="tab-content ms-md-3 reviewtab" id="pills-tabContent" style={{ width: '95%' }}>
-                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                            <ReviewsTab avg={avgreviews} total={ReviewNumbers} slug={slug} reviews={reviews} number={ReviewNumbers} />
-                        </div>
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Recipe</div>
-                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                            <SuggestedPairings pairings={pairings} cat_slug={category_slug} dish_slug={product_slug} />
-                        </div>
+                <div class="tab-content ms-md-3 reviewtab" id="pills-tabContent" style={{ width: '95%' }}>
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <ReviewsTab avg={avgreviews} total={ReviewNumbers} slug={slug} reviews={reviews} number={ReviewNumbers} />
                     </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Recipe</div>
+                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                        <SuggestedPairings pairings={pairings} cat_slug={category_slug} dish_slug={product_slug} />
+                    </div>
+                </div>
             </section>
         </>
     )
