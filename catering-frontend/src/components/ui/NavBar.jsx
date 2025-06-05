@@ -1,15 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { AlignJustify, ChefHat, ShoppingCart } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import NavBarLinks from './NavBarLinks'
 // import styles from './NavBarLinks.module.css'
 import styles from './NavBar.module.css'
+import { CartContext } from '../../context/CartContext'
 
 const NavBar = () => {
     // Define state for dropdown toggle
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef();
     const buttonRef = useRef();
+    const {numberOfItems} = useContext(CartContext)
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -68,7 +70,7 @@ const NavBar = () => {
 
                     <div className="position-relative me-5">
                         <ShoppingCart className={`${styles.cartHover}`} />
-                        <span className={`text-bg-dark badge position-absolute ${styles.top} rounded-circle ${styles.reduceSize}`} style={{ width: '1.5rem', height: '1.5rem' }}>2</span>
+                        <span className={`text-bg-dark badge position-absolute ${styles.top} rounded-circle ${styles.reduceSize}`} style={{ width: '1.5rem', height: '1.5rem' }}>{ numberOfItems ?? '' }</span>
                     </div>
                     {/* Hamburger icon */}
                     <button

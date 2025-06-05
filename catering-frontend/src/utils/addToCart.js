@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import api from "../api";
 
 const AddToCart = (cart_code, dish, extra_item_id = null) => {
@@ -14,6 +15,7 @@ const AddToCart = (cart_code, dish, extra_item_id = null) => {
     .then(res => {
       console.log(res.data);
       localStorage.setItem(`cart_item_id_${dish.name}`, dish_id)
+      toast.success('Item added successfully')
     })
     .catch(err => {
       console.log(err.message);

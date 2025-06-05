@@ -11,10 +11,12 @@ import Register from './components/Auth/Register';
 import Login from './components/Auth/Login';
 import Verify from './components/Auth/Verify'
 import RegenerateToken from './components/Auth/RegenerateToken';
+import { CartProvider } from './context/CartContext';
 
 
 const App = () => {
   return (
+    <CartProvider>
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
@@ -28,9 +30,10 @@ const App = () => {
             <Route path='/verify' element={<Verify />} />
             <Route path='/regenerate-token' element={<RegenerateToken />} />
           </Route>
-          <Route path='*' element={<NotFoundPage />}/>
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
+    </CartProvider>
   )
 }
 

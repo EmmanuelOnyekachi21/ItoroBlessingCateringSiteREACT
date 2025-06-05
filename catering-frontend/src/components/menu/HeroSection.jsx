@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './Menu.module.css';
 import useCategories from '../../hooks/useCategories';
 import api from '../../api';
@@ -8,6 +8,7 @@ import { ArrowRight, Heart, ShoppingCartIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import useGetorCreateCode from '../../hooks/useGetorCreateCode';
 import AddToCart from '../../utils/addToCart';
+import { CartContext } from '../../context/CartContext';
 
 /**
  * Hero Section for the Menu page
@@ -19,6 +20,7 @@ const HeroSection = () => {
   const [selectedCategory, setSelectedCategory] = useState('Main dishes'); // Default selected category
   const [fade, setFade] = useState(false); // Fade effect for smoother UI transitions
   const navigate = useNavigate();
+  const {setNumberOfItems} = useContext(CartContext);
 
   // Fetch dishes once on component mount
   useEffect(() => {
@@ -43,27 +45,28 @@ const HeroSection = () => {
     }, 100);
   };
 
-  // On render, disables dishes already in the cart
+  // a ditionary with dish's id and a boolean value indicating if user already added that
   const [dishInCart, setDishInCart] = useState({});
   const cart_code = useGetorCreateCode();
-  const [results, setResults] = useState({})
+  // const [results, setResults] = useState({})
 
-  useEffect(() => {
-    dishes.map((dish) => {
-      const dish_id = dish.id
-      const data = { cart_code, dish_id }
-      api.post('/api/cart/product_in_cart/', data)
-        .then(res => {
-          // const results = { id: dish.id, inCart: res.data.dish_in_cart }
-          setResults(prev => ({ ...prev, [dish.id]: res.data.dish_in_cart }))
-        })
-        .catch(err => console.log(err.message))
-    })
-  }, [dishes])
+  // useEffect(() => {
+  //   dishes.map((dish) => {
+  //     const dish_id = dish.id
+  //     const data = { cart_code, dish_id }
+  //     api.post('/api/cart/product_in_cart/', data)
+  //       .then(res => {
+  //         // const results = { id: dish.id, inCart: res.data.dish_in_cart }
+  //         setResults(prev => ({ ...prev, [dish.id]: res.data.dish_in_cart }))
+  //       })
+  //       .catch(err => console.log(err.message))
+  //   })
+  // }, [dishes])
 
   // const add_item = AddToCart(cart_code, dish.id, setDishInCart);
   const add_item = (dish) => {
     AddToCart(cart_code, dish);
+    setNumberOfItems(curr => curr + 1);
     setDishInCart((prev) => ({ ...prev, [dish.id]: true }))
   }
 
@@ -96,7 +99,7 @@ const HeroSection = () => {
         <div className={`row gx-2 fade-section ${fade ? 'fade-in' : ''} mx-auto`}>
           {filteredItems.map((dish) => {
 
-            const isInCart = (dishInCart[dish.id] || (localStorage.getItem(`cart_item_id_${dish.name}`) ? true : false)) ?? false
+            const isInCart = (dishInCart[dish.id] || (localStorage.getItem(`cart_item_id_${dish.name}`) ?? false)) ?? false
 
           return (
 
