@@ -27,7 +27,7 @@ const OrderSection = () => {
                     checked={orderType === 'delivery'}
                     onChange={(e) => setOrderType(e.target.value)}
                 />
-                <label className="form-check-label" htmlFor="pickup">Delivery</label>
+                <label className="form-check-label" htmlFor="delivery">Delivery</label>
             </div>
         </>
     )

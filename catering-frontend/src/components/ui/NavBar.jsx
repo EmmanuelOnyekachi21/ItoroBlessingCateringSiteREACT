@@ -11,7 +11,7 @@ const NavBar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef();
     const buttonRef = useRef();
-    const {numberOfItems} = useContext(CartContext)
+    const { numberOfItems } = useContext(CartContext)
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -68,10 +68,12 @@ const NavBar = () => {
                 {/* Right side: Cart */}
                 <div className='d-flex align-items-center gap-5'>
 
-                    <div className="position-relative me-5">
-                        <ShoppingCart className={`${styles.cartHover}`} />
-                        <span className={`text-bg-dark badge position-absolute ${styles.top} rounded-circle ${styles.reduceSize}`} style={{ width: '1.5rem', height: '1.5rem' }}>{ numberOfItems ?? '' }</span>
-                    </div>
+                    <Link to='/cart' className='text-dark'>
+                        <div className="position-relative me-5">
+                            <ShoppingCart className={`${styles.cartHover}`} />
+                            <span className={`text-bg-dark badge position-absolute ${styles.top} rounded-circle ${styles.reduceSize}`} style={{ width: '1.5rem', height: '1.5rem' }}>{numberOfItems ?? ''}</span>
+                        </div>
+                    </Link>
                     {/* Hamburger icon */}
                     <button
                         className={`${styles.buttonDesign} d-lg-none d-flex`}
