@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import QuantitySelector from '../ui/QuantitySelector';
 import OptionsDropdown from './OptionsDropdown';
 import { useParams } from 'react-router-dom';
@@ -8,6 +8,8 @@ import { Heart, ShoppingCartIcon } from 'lucide-react';
 import styles from '../menu/Menu.module.css';
 import ReviewsTab from './ReviewsTab';
 import SuggestedPairings from './SuggestedPairings';
+import { CartContext } from '../../context/CartContext';
+import DishContext from '../../context/DishContext';
 
 
 
@@ -21,6 +23,7 @@ const DishInfo = () => {
     const [ReviewNumbers, setReviewNumbers] = useState(0);
     const [reviews, setReviews] = useState([]);
     const [pairings, setPairings] = useState([]);
+    const { add_item, DishInfo } = useContext(CartContext);
 
     useEffect(() => {
         api.get(`api/dish/${category_slug}/${product_slug}`)
@@ -39,6 +42,11 @@ const DishInfo = () => {
     const slug = dish.slug;
     console.log(slug)
     // console.log(extras.extras)
+    const { dishInCart } = useContext(CartContext)
+    const isInCart = (dishInCart[dish.id] || (localStorage.getItem(`cart_item_id_${dish.name}`) ?? false)) ?? false;
+
+    const {incrementQuantity, decrementQuantity, quantity} = useContext(DishContext);
+
     return (
         <>
             <section className={`pt-5 container-fluid bg-light`}>
@@ -62,13 +70,13 @@ const DishInfo = () => {
                                     <span className='mb-2 d-inline-block'>Quantity</span>
                                     <div className="input-group input-spinner">
                                         <div className="input-group-prepend">
-                                            <button className="btn border btn-light">
+                                            <button disabled={quantity === 1} onClick={decrementQuantity} className="btn border btn-light">
                                                 -
                                             </button>
                                         </div>
-                                        <input type="text" className="text-center border-none border" value='1' readOnly style={{ width: '4rem', padding: '0' }} />
+                                        <input type="text" className="text-center border-none border" value={quantity} readOnly style={{ width: '4rem', padding: '0' }} />
                                         <div className="input-group-append">
-                                            <button className="border btn btn-light">
+                                            <button onClick={incrementQuantity} className="border btn btn-light">
                                                 +
                                             </button>
                                         </div>
@@ -97,7 +105,7 @@ const DishInfo = () => {
                                         Special Instructions
                                     </label>
 
-                                    <textarea className='form-control' id="specialInstructions" placeholder='Add any special requests (e.g., spice level, allergies)' rows={3}></textarea>
+                                    <textarea onChange={(e) => setNote(e.target.value)} className='form-control' id="specialInstructions" placeholder='Add any special requests (e.g., spice level, allergies)' rows={3}></textarea>
 
                                 </div>
 
@@ -108,13 +116,17 @@ const DishInfo = () => {
                                 </div>
 
                                 {/* Add to cart */}
+                                {console.log(isInCart)}
                                 <div className="d-flex my-4 gap-3 justify-content-end pe-3">
                                     <button
+                                        onClick={() => add_item(dish)}
+                                        disabled={isInCart}
                                         className={`btn d-flex text-white justify-content-center gap-4 align-items-center ${styles.buttonHover}`}
                                         style={{ width: '100%', backgroundColor: 'rgb(var(--orange))' }}
                                     >
                                         <ShoppingCartIcon size={16} />
-                                        <span> Add to cart</span>
+
+                                        <span> {isInCart ? 'Added to Cart' : 'Add to cart'}</span>
                                     </button>
                                     <button className='btn btn-light border justify-content-center align-items-center'>
                                         <Heart size={16} />

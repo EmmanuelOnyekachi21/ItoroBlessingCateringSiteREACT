@@ -13,12 +13,14 @@ import Verify from './components/Auth/Verify'
 import RegenerateToken from './components/Auth/RegenerateToken';
 import { CartProvider } from './context/CartContext';
 import Cart from './components/cart/Cart';
+import { DishProvider } from './context/DishContext';
 
 
 const App = () => {
   return (
     <CartProvider>
-      <BrowserRouter>
+      <DishProvider>
+        <BrowserRouter>
         <ScrollToTop />
         <Routes>
           <Route path='/' element={<MainLayout />}>
@@ -35,6 +37,7 @@ const App = () => {
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
+      </DishProvider>
     </CartProvider>
   )
 }

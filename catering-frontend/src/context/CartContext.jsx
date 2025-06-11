@@ -47,6 +47,7 @@ export const CartProvider = ({ children }) => {
         setNumberOfItems(curr => curr + 1);
         setDishInCart((prev) => ({ ...prev, [dish.id]: true }));
     }
+    
     return (
         <CartContext.Provider value={{ numberOfItems, setNumberOfItems, add_item, dishInCart }}>
             {children}
