@@ -7,33 +7,33 @@ import Options from './Options';
 const OptionsDropdown = ({ options, extra }) => {
     // tracks if the dropdown is open or not
     const [isopen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState({}); // selectedOptions is an object that stores which meat options are selected, along with their quantity.
+    // const [selectedOption, setSelectedOption] = useState({}); // selectedOptions is an object that stores which meat options are selected, along with their quantity.
     const toggle = () => setIsOpen(!isopen);
-    const handleChecks = (id) => {
-        setSelectedOption((prev) => (
-            {
-                ...prev, [id]: prev[id] ? undefined : { quantity: 1 },
-            }
-        ));
-    };
+    // const handleChecks = (id) => {
+    //     setSelectedOption((prev) => (
+    //         {
+    //             ...prev, [id]: prev[id] ? undefined : { quantity: 1 },
+    //         }
+    //     ));
+    // };
 
-    const incrementQuantity = (id) => {
-        setSelectedOption((prev) => (
-            {
-                ...prev, [id]: { quantity: prev[id].quantity + 1 }
-            }
-        ))
-    }
+    // const incrementQuantity = (id) => {
+    //     setSelectedOption((prev) => (
+    //         {
+    //             ...prev, [id]: { quantity: prev[id].quantity + 1 }
+    //         }
+    //     ))
+    // }
 
-    const decrementQuantity = (id) => {
-        setSelectedOption((prev) => (
-            {
-                ...prev, [id]: {
-                    quantity: prev[id].quantity > 1 ? prev[id].quantity - 1 : 1,
-                }
-            }
-        ))
-    }
+    // const decrementQuantity = (id) => {
+    //     setSelectedOption((prev) => (
+    //         {
+    //             ...prev, [id]: {
+    //                 quantity: prev[id].quantity > 1 ? prev[id].quantity - 1 : 1,
+    //             }
+    //         }
+    //     ))
+    // }
 
     return (
         <div className="my-3">
@@ -51,10 +51,10 @@ const OptionsDropdown = ({ options, extra }) => {
                     {options.map((option) => (
                         <Options
                             key={option.id}
-                            handleChecks={handleChecks}
-                            decrementQuantity={decrementQuantity}
-                            incrementQuantity={incrementQuantity}
-                            selectedOption={selectedOption}
+                            // handleChecks={handleChecks}
+                            // decrementQuantity={decrementQuantity}
+                            // incrementQuantity={incrementQuantity}
+                            // selectedOption={selectedOption}
                             option={option}
                         />
                     ))}

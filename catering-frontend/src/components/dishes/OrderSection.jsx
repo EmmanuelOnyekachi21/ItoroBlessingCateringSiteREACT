@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { DishContext } from '../../context/DishContext'
 
 const OrderSection = () => {
-    const [orderType, setOrderType] = useState('delivery') // defaults to delivery
+    const {setOrderOption, orderOption} = useContext(DishContext);
     return (
         <>
             <div className="form-check mb-2">
@@ -9,10 +10,10 @@ const OrderSection = () => {
                     type="radio"
                     className="form-check-input"
                     id="pickup"
-                    name="orderType"
+                    name="orderOption"
                     value="pickup"
-                    checked={orderType === 'pickup'}
-                    onChange={(e) => setOrderType(e.target.value)}
+                    checked={orderOption === 'pickup'}
+                    onChange={(e) => setOrderOption(e.target.value)}
                 />
                 <label className="form-check-label" htmlFor="pickup">Pickup</label>
             </div>
@@ -22,10 +23,10 @@ const OrderSection = () => {
                     type="radio"
                     className="form-check-input"
                     id="delivery"
-                    name="orderType"
+                    name="orderOption"
                     value="delivery"
-                    checked={orderType === 'delivery'}
-                    onChange={(e) => setOrderType(e.target.value)}
+                    checked={orderOption === 'delivery'}
+                    onChange={(e) => setOrderOption(e.target.value)}
                 />
                 <label className="form-check-label" htmlFor="delivery">Delivery</label>
             </div>

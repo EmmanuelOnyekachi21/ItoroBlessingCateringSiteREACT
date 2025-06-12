@@ -9,13 +9,12 @@ import styles from '../menu/Menu.module.css';
 import ReviewsTab from './ReviewsTab';
 import SuggestedPairings from './SuggestedPairings';
 import { CartContext } from '../../context/CartContext';
-import DishContext from '../../context/DishContext';
+import {DishContext} from '../../context/DishContext';
 
 
 
 
 const DishInfo = () => {
-    const [extras, setExtras] = useState([]);
     const [dish, setDish] = useState({});
     const { category_slug } = useParams();
     const { product_slug } = useParams();
@@ -40,12 +39,20 @@ const DishInfo = () => {
     }, [category_slug, product_slug])
     // console.log(extras)
     const slug = dish.slug;
-    console.log(slug)
+    // console.log(slug)
     // console.log(extras.extras)
     const { dishInCart } = useContext(CartContext)
     const isInCart = (dishInCart[dish.id] || (localStorage.getItem(`cart_item_id_${dish.name}`) ?? false)) ?? false;
 
-    const {incrementQuantity, decrementQuantity, quantity} = useContext(DishContext);
+    const {incrementQuantity, decrementQuantity, extras, orderOption, note, quantity, setNote} = useContext(DishContext);
+    const orderDetails = {
+        extras: extras,
+        orderOption: orderOption,
+        note: note,
+        quantity: quantity,
+    }
+
+
 
     return (
         <>
@@ -116,7 +123,7 @@ const DishInfo = () => {
                                 </div>
 
                                 {/* Add to cart */}
-                                {console.log(isInCart)}
+                                {/* {console.log(isInCart)} */}
                                 <div className="d-flex my-4 gap-3 justify-content-end pe-3">
                                     <button
                                         onClick={() => add_item(dish)}
@@ -142,24 +149,24 @@ const DishInfo = () => {
             {/* Review, Related Recipes and Suggested Pairing */}
             <section>
                 <div className="header bg-light d-inline-block ms-md-3 nav-tab">
-                    <ul class="nav nav-pills nav-tablist" id="pills-tab" role="tablist" style={{ background: 'hsl(20 5.9% 90%)', padding: '0.2rem' }}>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Reviews</button>
+                    <ul className="nav nav-pills nav-tablist" id="pills-tab" role="tablist" style={{ background: 'hsl(20 5.9% 90%)', padding: '0.2rem' }}>
+                        <li className="nav-item" role="presentation">
+                            <button className="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Reviews</button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Related Recipes</button>
+                        <li className="nav-item" role="presentation">
+                            <button className="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Related Recipes</button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Suggested Pairing</button>
+                        <li className="nav-item" role="presentation">
+                            <button className="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Suggested Pairing</button>
                         </li>
                     </ul>
                 </div>
-                <div class="tab-content ms-md-3 reviewtab" id="pills-tabContent" style={{ width: '95%' }}>
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div className="tab-content ms-md-3 reviewtab" id="pills-tabContent" style={{ width: '95%' }}>
+                    <div className="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                         <ReviewsTab avg={avgreviews} total={ReviewNumbers} slug={slug} reviews={reviews} number={ReviewNumbers} />
                     </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Recipe</div>
-                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    <div className="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">Recipe</div>
+                    <div className="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                         <SuggestedPairings pairings={pairings} cat_slug={category_slug} dish_slug={product_slug} />
                     </div>
                 </div>
