@@ -15,6 +15,7 @@ import {DishContext} from '../../context/DishContext';
 
 
 const DishInfo = () => {
+    const [extras, setExtras] = useState([]);
     const [dish, setDish] = useState({});
     const { category_slug } = useParams();
     const { product_slug } = useParams();
@@ -44,14 +45,14 @@ const DishInfo = () => {
     const { dishInCart } = useContext(CartContext)
     const isInCart = (dishInCart[dish.id] || (localStorage.getItem(`cart_item_id_${dish.name}`) ?? false)) ?? false;
 
-    const {incrementQuantity, decrementQuantity, extras, orderOption, note, quantity, setNote} = useContext(DishContext);
-    const orderDetails = {
-        extras: extras,
-        orderOption: orderOption,
-        note: note,
-        quantity: quantity,
-    }
-
+    const {incrementQuantity, decrementQuantity, quantity, setNote} = useContext(DishContext);
+    // const orderDetails = {
+    //     extras: extras,
+    //     orderOption: orderOption,
+    //     note: note,
+    //     quantity: quantity,
+    // }
+    console.log(typeof orderOption)
 
 
     return (
