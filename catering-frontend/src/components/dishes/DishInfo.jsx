@@ -9,7 +9,7 @@ import styles from '../menu/Menu.module.css';
 import ReviewsTab from './ReviewsTab';
 import SuggestedPairings from './SuggestedPairings';
 import { CartContext } from '../../context/CartContext';
-import {DishContext} from '../../context/DishContext';
+import { DishContext } from '../../context/DishContext';
 
 
 
@@ -45,7 +45,9 @@ const DishInfo = () => {
     const { dishInCart } = useContext(CartContext)
     const isInCart = (dishInCart[dish.id] || (localStorage.getItem(`cart_item_id_${dish.name}`) ?? false)) ?? false;
 
-    const {incrementQuantity, decrementQuantity, quantity, setNote} = useContext(DishContext);
+    const { incrementQuantity, orderOption, decrementQuantity, extras: xtras, quantity, setNote, note } = useContext(DishContext);
+    // const [data, setData] = useState({});
+
     // const orderDetails = {
     //     extras: extras,
     //     orderOption: orderOption,
@@ -127,7 +129,7 @@ const DishInfo = () => {
                                 {/* {console.log(isInCart)} */}
                                 <div className="d-flex my-4 gap-3 justify-content-end pe-3">
                                     <button
-                                        onClick={() => add_item(dish)}
+                                        onClick={() => add_item(dish, { xtras, orderOption, quantity, note })}
                                         disabled={isInCart}
                                         className={`btn d-flex text-white justify-content-center gap-4 align-items-center ${styles.buttonHover}`}
                                         style={{ width: '100%', backgroundColor: 'rgb(var(--orange))' }}
