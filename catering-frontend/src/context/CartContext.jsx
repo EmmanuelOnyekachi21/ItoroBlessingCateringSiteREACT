@@ -42,8 +42,8 @@ export const CartProvider = ({ children }) => {
     // }, [dishes])
 
     // const add_item = AddToCart(cart_code, dish.id, setDishInCart);
-    const add_item = (dish) => {
-        AddToCart(cart_code, dish);
+    const add_item = (dish, { xtras, orderOption, quantity, note } = {}) => {
+        AddToCart(cart_code, dish, { xtras, orderOption, quantity, note });
         setNumberOfItems(curr => curr + 1);
         setDishInCart((prev) => ({ ...prev, [dish.id]: true }));
     }
