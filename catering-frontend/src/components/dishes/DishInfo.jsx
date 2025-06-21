@@ -45,7 +45,18 @@ const DishInfo = () => {
     const { dishInCart } = useContext(CartContext)
     const isInCart = (dishInCart[dish.id] || (localStorage.getItem(`cart_item_id_${dish.name}`) ?? false)) ?? false;
 
-    const { incrementQuantity, orderOption, decrementQuantity, extras: xtras, quantity, setNote, note } = useContext(DishContext);
+    const {
+        incrementQuantity,
+        orderOption,
+        decrementQuantity,
+        extras: xtras,
+        quantity,
+        setNote,
+        note,
+        setQuantity,
+        setExtras: setXtras,
+        setOrderOption
+    } = useContext(DishContext);
     // const [data, setData] = useState({});
 
     // const orderDetails = {
@@ -55,6 +66,22 @@ const DishInfo = () => {
     //     quantity: quantity,
     // }
     console.log(typeof orderOption)
+
+    useEffect(() => {
+        api.get(`api/cart/get_cart_item?cart_code=${localStorage.getItem('cart_code')}&dish_id=${dish.id}`)
+        .then((res) => {
+            console.log(res.data);
+            setQuantity(res.data.quantity)
+            setNote(res.data.special_instruction)
+            setOrderOption(res.data.delivery_option)
+        })
+        .catch((err) => {
+            console.log(err.message);
+            setQuantity(1)
+            setNote('')
+            setOrderOption('delivery')
+        })
+    }, [dish])
 
 
     return (
@@ -115,7 +142,7 @@ const DishInfo = () => {
                                         Special Instructions
                                     </label>
 
-                                    <textarea onChange={(e) => setNote(e.target.value)} className='form-control' id="specialInstructions" placeholder='Add any special requests (e.g., spice level, allergies)' rows={3}></textarea>
+                                    <textarea value={note} onChange={(e) => setNote(e.target.value)} className='form-control' id="specialInstructions" placeholder='Add any special requests (e.g., spice level, allergies)' rows={3}></textarea>
 
                                 </div>
 
