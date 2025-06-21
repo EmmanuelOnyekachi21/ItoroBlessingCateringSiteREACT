@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { CartContext } from './CartContext';
+import api from '../api';
 
 
 export const DishContext = createContext();
