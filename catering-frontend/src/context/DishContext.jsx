@@ -68,6 +68,7 @@ const decrementExtraQuantity = (id) => {
 return (
     <DishContext.Provider value={{
         extras,
+        setExtras,
         incrementExtraQuantity,
         decrementExtraQuantity,
         toggleExtra,

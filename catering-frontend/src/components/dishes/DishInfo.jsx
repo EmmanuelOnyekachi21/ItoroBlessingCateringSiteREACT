@@ -68,12 +68,23 @@ const DishInfo = () => {
     console.log(typeof orderOption)
 
     useEffect(() => {
+        // To avoid calling get_cart_item before the dish has loaded
+        // The api call happens only when the dish is loaded and then useeffcet 
+        // runs again becauuse of the dish dependency i added to the dependency array
+        if (!dish.id) return;
+
         api.get(`api/cart/get_cart_item?cart_code=${localStorage.getItem('cart_code')}&dish_id=${dish.id}`)
         .then((res) => {
             console.log(res.data);
             setQuantity(res.data.quantity)
             setNote(res.data.special_instruction)
             setOrderOption(res.data.delivery_option)
+            const xtraObj = {};
+            res.data.extra_items.forEach(extra => {
+                xtraObj[extra.id] = { quantity: extra.quantity }
+            })
+            console.log(xtraObj)
+            setXtras(xtraObj);
         })
         .catch((err) => {
             console.log(err.message);
