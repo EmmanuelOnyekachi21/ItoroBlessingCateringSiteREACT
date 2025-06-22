@@ -95,6 +95,21 @@ const DishInfo = () => {
     }, [dish])
 
 
+    // Calculate total price
+    const calculateTotal = () => {
+        let baseTotal = dish.price * quantity;
+
+        // console.log(Object.entries(xtras));
+        Object.entries(xtras).forEach(([id, value]) => {
+            // let xtras_price = 0
+            for (const group of extras){
+                const found = group.extras.find(opt => opt.id === parseInt(id))
+                if (found) baseTotal += (found.price * value.quantity)
+            }
+        })
+        return baseTotal;
+    }
+
     return (
         <>
             <section className={`pt-5 container-fluid bg-light`}>
@@ -160,7 +175,7 @@ const DishInfo = () => {
                                 {/* Total Price */}
                                 <div className='d-flex justify-content-between mx-auto' style={{ width: '95%' }}>
                                     <h4 className='poppins-bold'>Total Price:</h4>
-                                    <h3 className='lato-bold' style={{ color: 'rgb(var(--orange))' }}>₦2000</h3>
+                                    <h3 className='lato-bold' style={{ color: 'rgb(var(--orange))' }}>₦{calculateTotal()}</h3>
                                 </div>
 
                                 {/* Add to cart */}
