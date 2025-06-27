@@ -8,7 +8,7 @@ const AddToCart = (cart_code, dish, data) => {
   const { quantity, orderOption, note, xtras } = data;
   const cartItemData = {
     cart_code,
-    dish_id,
+    dish: dish_id,
     extra_items: xtras,
     note,
     orderoption: orderOption,

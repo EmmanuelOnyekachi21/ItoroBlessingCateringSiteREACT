@@ -81,9 +81,9 @@ const DishInfo = () => {
             setOrderOption(res.data.delivery_option)
             const xtraObj = {};
             res.data.extra_items.forEach(extra => {
-                xtraObj[extra.id] = { quantity: extra.quantity }
+                xtraObj[extra.extra_id] = { quantity: extra.quantity }
             })
-            console.log(xtraObj)
+            console.log(xtraObj);
             setXtras(xtraObj);
         })
         .catch((err) => {
@@ -93,7 +93,6 @@ const DishInfo = () => {
             setOrderOption('delivery')
         })
     }, [dish])
-
 
     // Calculate total price
     const calculateTotal = () => {
