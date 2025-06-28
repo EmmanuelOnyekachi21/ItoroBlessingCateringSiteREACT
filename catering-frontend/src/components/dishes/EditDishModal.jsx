@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
 
 const EditDishModal = () => {
   return (
-    <div>EditDishModal</div>
-  )
-}
+    <div
+      className="modal fade"
+      id="editCartModal"
+      tabIndex="-1"
+      aria-labelledby="editCartModalLabel"
+      aria-hidden="true"
+    ></div>
+  );
+};
 
-export default EditDishModal
+export default EditDishModal;
