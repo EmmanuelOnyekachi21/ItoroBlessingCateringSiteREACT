@@ -84,20 +84,9 @@ const DishInfo = () => {
       .then((res) => {
         console.log(res.data);
         setQuantity(res.data.quantity);
-        setNote(res.data.special_instruction);
-        setOrderOption(res.data.delivery_option);
-        const xtraObj = {};
-        res.data.extra_items.forEach((extra) => {
-          xtraObj[extra.extra_id] = { quantity: extra.quantity };
-        });
-        console.log(xtraObj);
-        setXtras(xtraObj);
       })
       .catch((err) => {
         console.log(err.message);
-        setQuantity(1);
-        setNote("");
-        setOrderOption("delivery");
       });
   }, [dish]);
 
@@ -170,41 +159,43 @@ const DishInfo = () => {
                     </div>
                   </div>
                 </div>
-                <h4 className="mt-4 poppins-bold">Customize your meal</h4>
-                <div className="mb-3">
-                  {extras.map((extra) => (
-                    <OptionsDropdown
-                      options={extra.extras}
-                      extra={extra}
-                      key={extra.id}
-                    />
-                  ))}
-                </div>
+                {isInCart ? (
+                  <>
+                    <br />
+                  </>
+                ) : (
+                  <>
+                    <h4 className="mt-4 poppins-bold">Customize your meal</h4>
+                    <div className="mb-3">
+                      {extras.map((extra) => (
+                        <OptionsDropdown
+                          options={extra.extras}
+                          extra={extra}
+                          key={extra.id}
+                        />
+                      ))}
+                    </div>
 
-                {/* Order Option */}
-                <div className="mb-3">
-                  <h4 className="poppins-bold">Order Option</h4>
-                  <OrderSection />
-                </div>
+                    {/* Special Instructions */}
+                    <div className="mb-5">
+                      <label
+                        htmlFor="Special Instructions"
+                        className="form-label fs-4 poppins-bold"
+                      >
+                        Special Instructions
+                      </label>
 
-                {/* Special Instructions */}
-                <div className="mb-5">
-                  <label
-                    htmlFor="Special Instructions"
-                    className="form-label fs-4 poppins-bold"
-                  >
-                    Special Instructions
-                  </label>
-
-                  <textarea
-                    value={note}
-                    onChange={(e) => setNote(e.target.value)}
-                    className="form-control"
-                    id="specialInstructions"
-                    placeholder="Add any special requests (e.g., spice level, allergies)"
-                    rows={3}
-                  ></textarea>
-                </div>
+                      <textarea
+                        value={note}
+                        onChange={(e) => setNote(e.target.value)}
+                        className="form-control"
+                        id="specialInstructions"
+                        placeholder="Add any special requests (e.g., spice level, allergies)"
+                        rows={3}
+                      ></textarea>
+                    </div>
+                  </>
+                )}
 
                 {/* Total Price */}
                 <div
@@ -225,26 +216,6 @@ const DishInfo = () => {
                 <div className="d-flex my-4 gap-3 justify-content-end pe-3">
                   {isInCart ? (
                     <>
-                      <button
-                        onClick={() =>
-                          add_item(dish, { xtras, orderOption, quantity, note })
-                        }
-                        className={`btn d-flex text-white justify-content-center gap-4 align-items-center ${styles.buttonHover}`}
-                        style={{
-                          width: "100%",
-                          backgroundColor: "rgb(var(--orange))",
-                        }}
-                      >
-                        <ShoppingCartIcon size={16} />
-                        Add To Cart
-                        {/* <span> {isInCart ? "Added to Cart" : "Add to cart"}</span> */}
-                      </button>
-                      <button className="btn btn-light border justify-content-center align-items-center">
-                        <Heart size={16} />
-                      </button>
-                    </>
-                  ) : (
-                    <>
                       {/* Button trigger modal */}
                       <button
                         data-bs-toggle="modal"
@@ -263,7 +234,27 @@ const DishInfo = () => {
                         <Heart size={16} />
                       </button>
 
-                      <EditDishModal />
+                      <EditDishModal cartItem={dish} extras={extras}/>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() =>
+                          add_item(dish, { xtras, orderOption, quantity, note })
+                        }
+                        className={`btn d-flex text-white justify-content-center gap-4 align-items-center ${styles.buttonHover}`}
+                        style={{
+                          width: "100%",
+                          backgroundColor: "rgb(var(--orange))",
+                        }}
+                      >
+                        <ShoppingCartIcon size={16} />
+                        Add To Cart
+                        {/* <span> {isInCart ? "Added to Cart" : "Add to cart"}</span> */}
+                      </button>
+                      <button className="btn btn-light border justify-content-center align-items-center">
+                        <Heart size={16} />
+                      </button>
                     </>
                   )}
                 </div>
