@@ -78,7 +78,7 @@ const EditDishModal = ({ cartItem, extras }) => {
 
         // close the modal manually using Bootstrap
         const modalElement = document.getElementById("editCartModal");
-        const bsModal = Modal.getInstance(modalElement);
+        let bsModal = Modal.getInstance(modalElement);
         if (!bsModal) {
           bsModal = new Modal(modalElement);
         }
