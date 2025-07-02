@@ -14,6 +14,7 @@ import RegenerateToken from './components/Auth/RegenerateToken';
 import { CartProvider } from './context/CartContext';
 import Cart from './components/cart/Cart';
 import { DishProvider } from './context/DishContext';
+import Contact from './components/contact/Contact';
 
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
             <Route path='/verify' element={<Verify />} />
             <Route path='/regenerate-token' element={<RegenerateToken />} />
             <Route path='/cart' element={<Cart />} />
+            <Route path='/contact' element={<Contact />} />
           </Route>
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
