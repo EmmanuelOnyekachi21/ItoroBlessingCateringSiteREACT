@@ -42,11 +42,30 @@ const Contact = () => {
                     type="email"
                     className="form-control"
                     id="email"
-                    placeholder="email"
+                    placeholder="your.email@example.com"
                   />
+                </div>
+                <div className="col-12 mb-3">
+                  <label htmlFor="phone">Phone Number</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    id="phone"
+                    className="form-control"
+                    placeholder="Your phone number"
+                  />
+                </div>
+                <div className="col-12 mb-3">
+                  <label htmlFor="inputSubject">Subject</label>
+                  <input type="text" name="subject" className="form-control" placeholder="What is this regarding?" />
+                </div>
+                <div className="col-12 mb-3">
+                  <label htmlFor="inputMessage">Message</label>
+                  <textarea id="message" name="message" rows='4' cols='50' className="form-control" placeholder="How can we help you?" />
                 </div>
               </div>
             </form>
+            <button className={`btn btn-light px-3 py-md-2 py-3`} style={{ backgroundColor: 'rgb(var(--orange))', color: 'white', border: 'none' }}>Send Message</button>
           </div>
         </div>
       </div>
